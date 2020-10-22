@@ -245,7 +245,7 @@ If you're using the 2x32 and you've tinkered with Dimension Engineering's DEScri
 
 If you're using 5v to power some components on your I2C device chain, you can use the 5V terminal on the Sabertooth and connect to the positive I2C pin header on the slipring board and 0V on the Sabertooth to GND on the slipring board.
 
-### Polulu Mini Maestro Servo Controller
+### Polulu Mini Maestro
 
 The Maestro needs external power, delivered via the screw terminals on the board. This will power both the Maestro processor itself and the attached servos.
 
