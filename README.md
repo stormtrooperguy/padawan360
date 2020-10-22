@@ -26,6 +26,7 @@ Still to come - servo control.
     - [Option 1](#option-1)
     - [Option 2 (Best Option)](#option-2--best-option-)
   - [Foot Drive](#foot-drive)
+  - [Polulu Mini Maestro](#servo)
   - [Arduino UNO/MEGA](#arduino-uno-mega)
     - [I2C](#i2c)
   - [Controller Pairing](#controller-pairing)
@@ -243,6 +244,30 @@ Sabertooth 2x32 / 2x25 / 2x12 dip switches should 1 & 2 OFF and all others ON if
 If you're using the 2x32 and you've tinkered with Dimension Engineering's DEScribe Software to tweak settings on your motor controller, under the Serial and USB tab, make sure the Baud Rate is set to 9600. This should be the default, but you should verify.
 
 If you're using 5v to power some components on your I2C device chain, you can use the 5V terminal on the Sabertooth and connect to the positive I2C pin header on the slipring board and 0V on the Sabertooth to GND on the slipring board.
+
+### Polulu Mini Maestro Servo Controller
+
+The Maestro needs external power, delivered via the screw terminals on the board. This will power both the Maestro processor itself and the attached servos.
+
+| Mini Maestro                    | Arduino Mega  |
+| ------------------------------- | ------------- |
+| RX                              | Serial3 (Tx3) |
+| TX                              | Serial3 (Rx3) |
+| GND                             | GND           |
+
+You need to configure the animations via the Maestro Control Center app.
+
+Once you have configured your animations and wired up the controller, it's
+pretty simple to integrate them into the sketch.
+
+In padawan360_body\padawan360_body_mega_i2c_ino\padawan360_body_mega_i2c\padawan360_body_mega_i2c.ino, search for "GENERAL SOUND PLAYBACK AND DISPLAY CHANGING". That's where the button mappings begin.
+
+For whichever button combos you want to use, add:
+      maestro.restartScript(x);
+
+Where x is the script number you want to run. You can find the script numbers in the Polulu Control Center.
+
+Since the actual servo movement is executed directly by the Maestro, the Arduino sketch will continue processing without delay. 
 
 ### Arduino UNO/MEGA
 
