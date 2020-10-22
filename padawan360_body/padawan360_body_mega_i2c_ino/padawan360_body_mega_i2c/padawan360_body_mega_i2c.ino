@@ -27,6 +27,19 @@ Xbox 360 USB Wireless Reciver
 Sabertooth Motor Controller
 Syren Motor Controller
 Sparkfun MP3 Trigger
+Polulu Mini Maestro Servo Controller
+
+- Brian: About the servo controller...
+
+The Polulu library is not bundled with this repo. To install it, please see the instructions at
+https://github.com/pololu/maestro-arduino
+
+Sequences need to be built using the Maestro Control Center app. That's beyond 
+the scope of this document. See Michael Baddeley's YouTube series for a walkthrough of what to do.
+https://www.youtube.com/channel/UC_to0ElS5JqOOvnQMR_DVFA
+
+My config has 8 total sequences, described in the servo_sequences.txt file I have added.
+
 
 This sketch supports I2C and calls events on many sound effect actions to control lights and sounds.
 It is NOT set up for Dan's method of using the serial packet to transfer data up to the dome
@@ -57,7 +70,7 @@ byte drivespeed = DRIVESPEED1;
 // the higher this number the faster the droid will spin in place, lower - easier to control.
 // Recommend beginner: 40 to 50, experienced: 50 $ up, I like 70
 // This may vary based on your drive system and power system
-const byte TURNSPEED = 70;
+const byte TURNSPEED = 50;
 
 // Set isLeftStickDrive to true for driving  with the left stick
 // Set isLeftStickDrive to false for driving with the right stick (legacy and original configuration)
@@ -66,7 +79,7 @@ boolean isLeftStickDrive = true;
 // If using a speed controller for the dome, sets the top speed. You'll want to vary it potenitally
 // depending on your motor. My Pittman is really fast so I dial this down a ways from top speed.
 // Use a number up to 127 for serial
-const byte DOMESPEED = 110;
+const byte DOMESPEED = 127;
 
 // Ramping- the lower this number the longer R2 will take to speedup or slow down,
 // change this by incriments of 1
@@ -92,7 +105,10 @@ const int SABERTOOTHBAUDRATE = 9600;
 // Set the baude rate for the Syren motor controller (dome)
 // for packetized options are: 2400, 9600, 19200 and 38400. I think you need to pick one that works
 // and I think it varies across different firmware versions.
-const int DOMEBAUDRATE = 2400;
+const int DOMEBAUDRATE = 9600;
+
+// Set the baud rate for the Mini Maestro
+const int MAESTROBAUDRATE = 9600;
 
 // Default sound volume at startup
 // 0 = full volume, 255 off
@@ -113,10 +129,13 @@ int turnDirection = 20;
 #include <Wire.h>
 #include <XBOXRECV.h>
 
+// servo controls
+#include <PololuMaestro.h>
 
 /////////////////////////////////////////////////////////////////
 Sabertooth Sabertooth2x(128, Serial1);
 Sabertooth Syren10(128, Serial2);
+MiniMaestro maestro(Serial3);
 
 // Satisfy IDE, which only needs to see the include statment in the ino.
 #ifdef dobogusinclude
@@ -163,8 +182,6 @@ ButtonEnum hpLightToggleButton;
 
 boolean isHPOn = false;
 
-
-
 MP3Trigger mp3Trigger;
 USB Usb;
 XBOXRECV Xbox(&Usb);
@@ -172,6 +189,7 @@ XBOXRECV Xbox(&Usb);
 void setup() {
   Serial1.begin(SABERTOOTHBAUDRATE);
   Serial2.begin(DOMEBAUDRATE);
+  Serial3.begin(MAESTROBAUDRATE);
 
 #if defined(SYRENSIMPLE)
   Syren10.motor(0);
@@ -230,7 +248,7 @@ void setup() {
     //Serial.print(F("\r\nOSC did not start"));
     while (1); //halt
   }
-  //Serial.print(F("\r\nXbox Wireless Receiver Library Started"));
+  //Serial. print(F("\r\nXbox Wireless Receiver Library Started"));
 }
 
 
@@ -413,6 +431,7 @@ void loop() {
       triggerI2C(26, 11);
       triggerI2C(27, 11);
     } else if (Xbox.getButtonPress(L2, 0)) {
+      maestro.restartScript(7);
       mp3Trigger.play(1);
       //logic lights, alarm
       triggerI2C(10, 1);
