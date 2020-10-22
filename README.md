@@ -26,7 +26,7 @@ Still to come - servo control.
     - [Option 1](#option-1)
     - [Option 2 (Best Option)](#option-2--best-option-)
   - [Foot Drive](#foot-drive)
-  - [Polulu Mini Maestro](#servo)
+  - [Polulu Mini Maestro](#polulu-mini-maestro)
   - [Arduino UNO/MEGA](#arduino-uno-mega)
     - [I2C](#i2c)
   - [Controller Pairing](#controller-pairing)
