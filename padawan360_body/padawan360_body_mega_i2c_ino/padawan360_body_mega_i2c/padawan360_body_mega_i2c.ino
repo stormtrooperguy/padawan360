@@ -29,7 +29,7 @@ Syren Motor Controller
 Sparkfun MP3 Trigger
 Polulu Mini Maestro Servo Controller
 
-- Brian: About the servo controller...
+- Brian: About the servo controller -
 
 The Polulu library is not bundled with this repo. To install it, please see the instructions at
 https://github.com/pololu/maestro-arduino
@@ -402,105 +402,128 @@ void loop() {
   // Y Button and Y combo buttons
   if (Xbox.getButtonClick(Y, 0)) {
     if (Xbox.getButtonPress(L1, 0)) {
-      mp3Trigger.play(8);
+      // Play "Mad About you from galaxy's edge"
+      mp3Trigger.play(5);
       //logic lights, random
-      triggerI2C(10, 0);
+      //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(L2, 0)) {
-      maestro.restartScript(3);     
-      mp3Trigger.play(2);
-      //logic lights, random
-      triggerI2C(10, 0);
-    } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(9);
-      //logic lights, random
-      triggerI2C(10, 0);
-    } else if (Xbox.getButtonPress(R2, 0)) {
-       maestro.restartScript(6); 
-    } else {
+      // Left door open; gripper arm up; grabby hand
+      maestro.restartScript(3);
       mp3Trigger.play(random(13, 17));
       //logic lights, random
-      triggerI2C(10, 0);
+      //triggerI2C(10, 0);
+    } else if (Xbox.getButtonPress(R1, 0)) {
+      mp3Trigger.play(random(13, 17));
+      //logic lights, random
+      //triggerI2C(10, 0);
+    } else if (Xbox.getButtonPress(R2, 0)) {
+      // right door open; interface arm up, telescope out
+      maestro.restartScript(6); 
+      mp3Trigger.play(random(13, 17));
+    } else {
+      // chortle
+      mp3Trigger.play(2);
+      //logic lights, random
+      //triggerI2C(10, 0);
     }
   }
 
   // A Button and A combo Buttons
   if (Xbox.getButtonClick(A, 0)) {
     if (Xbox.getButtonPress(L1, 0)) {
-      mp3Trigger.play(6);
+      // play Modal Notes from Galaxy's Edge
+      mp3Trigger.play(10);
       //logic lights
-      triggerI2C(10, 6);
+      //triggerI2C(10, 6);
       // HPEvent 11 - SystemFailure - I2C
-      triggerI2C(25, 11);
-      triggerI2C(26, 11);
-      triggerI2C(27, 11);
+      //triggerI2C(25, 11);
+      //triggerI2C(26, 11);
+      //triggerI2C(27, 11);
     } else if (Xbox.getButtonPress(L2, 0)) {
+      // Gripper arm down; Left door close
       maestro.restartScript(2);
-      mp3Trigger.play(1);
-      //logic lights, alarm
-      triggerI2C(10, 1);
-      //  HPEvent 3 - alarm - I2C
-      triggerI2C(25, 3);
-      triggerI2C(26, 3);
-      triggerI2C(27, 3);
-    } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(11);
-      //logic lights, alarm2Display
-      triggerI2C(10, 11);
-    } else if (Xbox.getButtonPress(R2, 0)) {
-      maestro.restartScript(5);
-    } else {
       mp3Trigger.play(random(17, 25));
+      //logic lights, alarm
+      //triggerI2C(10, 1);
+      //  HPEvent 3 - alarm - I2C
+      //triggerI2C(25, 3);
+      //triggerI2C(26, 3);
+      //triggerI2C(27, 3);
+    } else if (Xbox.getButtonPress(R1, 0)) {
+      mp3Trigger.play(random(17, 25));
+      //logic lights, alarm2Display
+      //triggerI2C(10, 11);
+    } else if (Xbox.getButtonPress(R2, 0)) {
+      // Interface arm down, right door close
+      maestro.restartScript(5);
+      mp3Trigger.play(random(17, 25));      
+    } else {
+      // scream
+      mp3Trigger.play(1);
       //logic lights, random
-      triggerI2C(10, 0);
+      //triggerI2C(10, 0);
     }
   }
 
   // B Button and B combo Buttons
   if (Xbox.getButtonClick(B, 0)) {
     if (Xbox.getButtonPress(L1, 0)) {
-      mp3Trigger.play(7);
+      // play "bright suns" from galaxy's edge
+      mp3Trigger.play(11);
       //logic lights, random
-      triggerI2C(10, 0);
+      //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(L2, 0)) {
+      // panic still in development
+      //maestro.restartScript(4);
+      mp3Trigger.play(6);
+      //logic lights, random
+      //triggerI2C(10, 0);
+    } else if (Xbox.getButtonPress(R1, 0)) {
+      mp3Trigger.play(random(32, 52));
+      //logic lights bargrap
+      //triggerI2C(10, 10);
+      // HPEvent 1 - Disco - I2C
+      //triggerI2C(25, 10);
+      //triggerI2C(26, 10);
+      //triggerI2C(27, 10);
+    } else if (Xbox.getButtonPress(R2, 0)) {
+      // Data panel close
+      maestro.restartScript(0);
+      mp3Trigger.play(random(32, 52));
+    } else {
       mp3Trigger.play(3);
       //logic lights, random
-      triggerI2C(10, 0);
-    } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(10);
-      //logic lights bargrap
-      triggerI2C(10, 10);
-      // HPEvent 1 - Disco - I2C
-      triggerI2C(25, 10);
-      triggerI2C(26, 10);
-      triggerI2C(27, 10);
-    } else {
-      mp3Trigger.play(random(32, 52));
-      //logic lights, random
-      triggerI2C(10, 0);
+      //triggerI2C(10, 0);
     }
   }
 
   // X Button and X combo Buttons
   if (Xbox.getButtonClick(X, 0)) {
-    // leia message L1+X
     if (Xbox.getButtonPress(L1, 0)) {
-      mp3Trigger.play(5);
-      //logic lights, leia message
-      triggerI2C(10, 5);
-      // Front HPEvent 1 - HoloMessage - I2C -leia message
-      triggerI2C(25, 9);
-    } else if (Xbox.getButtonPress(L2, 0)) {
-      mp3Trigger.play(4);
-      //logic lights
-      triggerI2C(10, 4);
-    } else if (Xbox.getButtonPress(R1, 0)) {
+      // play Utinni from Galaxy's Edge
       mp3Trigger.play(12);
-      //logic lights, random
-      triggerI2C(10, 0);
-    } else {
+      //logic lights, leia message
+      //triggerI2C(10, 5);
+      // Front HPEvent 1 - HoloMessage - I2C -leia message
+      //triggerI2C(25, 9);
+    } else if (Xbox.getButtonPress(L2, 0)) {
+      // Flirty droid -- Utility arm flap + wolf whistle
+      mp3Trigger.play(4);
+      maestro.restartScript(0);
+      //logic lights
+      //triggerI2C(10, 4);
+    } else if (Xbox.getButtonPress(R1, 0)) {
       mp3Trigger.play(random(25, 32));
       //logic lights, random
-      triggerI2C(10, 0);
+      //triggerI2C(10, 0);
+    } else if (Xbox.getButtonPress(R2, 0)) {
+      // Data panel open
+      maestro.restartScript(0);
+      mp3Trigger.play(random(25, 32));
+    } else {
+      mp3Trigger.play(6);
+      //logic lights, random
+      //triggerI2C(10, 0);
     }
   }
 
