@@ -406,6 +406,7 @@ void loop() {
       //logic lights, random
       triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(L2, 0)) {
+      maestro.restartScript(3);     
       mp3Trigger.play(2);
       //logic lights, random
       triggerI2C(10, 0);
@@ -413,6 +414,8 @@ void loop() {
       mp3Trigger.play(9);
       //logic lights, random
       triggerI2C(10, 0);
+    } else if (Xbox.getButtonPress(R2, 0)) {
+       maestro.restartScript(6); 
     } else {
       mp3Trigger.play(random(13, 17));
       //logic lights, random
@@ -431,7 +434,7 @@ void loop() {
       triggerI2C(26, 11);
       triggerI2C(27, 11);
     } else if (Xbox.getButtonPress(L2, 0)) {
-      maestro.restartScript(7);
+      maestro.restartScript(2);
       mp3Trigger.play(1);
       //logic lights, alarm
       triggerI2C(10, 1);
@@ -443,6 +446,8 @@ void loop() {
       mp3Trigger.play(11);
       //logic lights, alarm2Display
       triggerI2C(10, 11);
+    } else if (Xbox.getButtonPress(R2, 0)) {
+      maestro.restartScript(5);
     } else {
       mp3Trigger.play(random(17, 25));
       //logic lights, random
