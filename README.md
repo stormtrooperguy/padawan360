@@ -65,55 +65,60 @@ Note: this does NOT work with an Xbox One controller. Xbox One controllers use d
 
 ## Components
 
-- ### Arduino Mega (Option 1 and Recommended!)
+### Arduino Mega
+
+*Brian Edit: I've removed the Uno option since it won't work with the addition of the 3rd hardware serial device, and I don't want to have to use software serial. Interrupts are not my friend.*
 
 I run a Mega for the body. It uses the hardware serial pins to connect to the motor controllers. Better performance and memory utilization. The Mega has more memory available too so there's more room to expand and do more if you want. With the Mega, I can also support I2C a bit better. I tend to make tweaks to improve readability here more than the Uno as I run a Mega in my droid. It's more performant than the Uno.
 
-- ### Arduino Uno (Option 2)
 
-For the body. Main Arduino that runs everything. Receivers, code, connection to MP3 trigger, etc runs through here. SparkFun, RadioShack, Amazon, you can find these everywhere these days.
-
-
-
-- ### USB Shield
+### USB Shield
 
   Sourced from [Circuits@Home](https://www.circuitsathome.com/products-page/arduino-shields). They've shuffled their links around. Find it on that link labeled "USB Host Shield 2.0 for Arduino – Assembled". They used to offer it assembled and unassembled but as of this writing, they just have it assembled.
 
   If Amazon is your thing Sainsmart has a USB Host Shield that has been found to be compatible with Padawan360 (Prime elligble!) SainSmart USB Shield](http://www.amazon.com/SainSmart-Compatible-HOST-Shield-Arduino/dp/B006J4G000/ref=sr_1_1?ie=UTF8&qid=1420994477&sr=8-1&keywords=usb+host+shield+2.0+for+arduino). *NOTE* I've seen that some SainSmart isn't sending them with the 2x3 headers that connects the shield to the Arduino board together. This connection is absolutely necessary for the Arduino to talk to the shield over serial (ISCP pins). It will NOT work without this connection. Real dumb. The shield is basically useless without the connection. I spent a while a DroidCon trying to help someone it before realizing that was missing and it's absolutely necessary. You can grab 2x3 headers from Sparkfun for 50 cents. The missing headers seem to be a common issue as the Aamazon reviews are rife with that complaint.
 
-- ### Xbox 360 Wireless USB Receiver
+### Xbox 360 Wireless USB Receiver
 
   You may be able to source this from Best Buy, GameStop, or something local. It's available on [New Egg](https://www.newegg.com/p/pl?d=microsoft+xbox+360+usb+receiver).
       
   I bought a generic one from Microcenter that works fine. Some users have gotten cheap ones from Ebay or other non-official/off-brands that did not function. I highly recommend buying 1st party official Microsoft receiver. Your mileage may vary with off-brand components here. If you are having problems pairing, and you've gone through the troubleshooting steps and you are not using an official receiver, it's likely the culprit. 
 
-- ### Xbox 360 Wireless Controller
+### Xbox 360 Wireless Controller
 
   [Controller via Amazon](http://www.amazon.com/Xbox-360-Wireless-Controller-Glossy-Black/dp/B003ZSP0WW).  I have a nice blue one to match R2 personally ;) Like the USB Receiver, I highly recommend buying a 1st party official Microsoft controller. I know one user bought one cheap on Ebay and it didn't even have a sync button and there was no X on the center Home button. Your mileage may vary with off-brand components here.
 
   **Note:** I have seen the controller bundled with the USB receiver together. It was in the gaming peripheals department in my local Microcenter. It's marketed for PC gaming. Nice to get it in one package if you can if you don't have an extra 360 controller to spare.
 
-- ### MP3 Trigger
+### MP3 Trigger
 
   [Sourced from SparkFun](https://www.sparkfun.com/products/11029). Be sure to get a microSD card too. Nothing too big, it's just MP3s.
 
-- ### Sabertooth Motor Controller - Feet
+### Sabertooth Motor Controller - Feet
 
   Depending on your motors you'll want a  [Sabertooth 2x32](https://www.dimensionengineering.com/products/sabertooth2x32), [Sabertooth 2x25](https://www.dimensionengineering.com/products/sabertooth2x25) or [2x12](https://www.dimensionengineering.com/products/sabertooth2x12). The 2x32 and the 2x24 seem to be crossing over price point. Might as well get the 2x32 if you're buying brand new. There's some additional bells and whistles in the 32 and can be programmed via Dimension Engineering's software, but some of those usefuls features are handled in the code, like for speed Ramping for example. My styrene droid with Jaycar motors uses 2x12. Most people tend to use 2x25 or 2x32 for scooter motors and NPC motors. Consult with Dimension Engineering to make sure you get the right one you need. Either one will work with the code
 
-- ### Syren Motor Controller - Dome
+### Syren Motor Controller - Dome
 
   [Syren 10](https://www.dimensionengineering.com/products/syren10)
 
-- ### Amp and Speakers
+### Mini Maestro Servo controller
+
+I used the Mini Maestro 18, but am not actually using all 18 channels right now. The 12 should suffice, but it really depends on how much you want to do. If you want all your dome panels pop you might need a separate one for the head.
+
+See [Polulu's site](https://www.pololu.com/category/102/maestro-usb-servo-controllers) for the various options.
+
+
+
+### Amp and Speakers
 
   Up to you and how big and loud you want. I have a small speaker and a $20 amp from Pyle. A ground loop isolator might be necessary to protect the MP3 trigger and eliminate buzzing from the speaker.
 
-- ### Teeces lights
+### Teeces lights
 
   The sketch provided here will work for version 3 of the Teeces lighting system for Logic Lights. Use the regular setup and installation instructions for the Teeces system. To control brightness and changing the lighting animations that match some scenes from the films (like the flicker pattern during the Leia Message), the Arduino for the Teeces system needs to be connected to the body Arduino via I2C. Connect the I2C pins from the Body Arduino to the Teeces Arduino. SDA->SDA pins and SCL->SCL pins. On the Uno these are A4 and A5 respectively and on the Mega they are 20 and 21. Verify the I2C pins on your Teeces Arduino. These can be connected via a slipring.
 
-- #### Optional
+#### Optional
 
   - ##### RSeries RGB HPs.
   
@@ -255,19 +260,39 @@ The Maestro needs external power, delivered via the screw terminals on the board
 | TX                              | Serial3 (Rx3) |
 | GND                             | GND           |
 
-You need to configure the animations via the Maestro Control Center app.
+You need to configure the animations via the Maestro Control Center app. Using that app is not covered here. See [the control center documentation](https://www.pololu.com/docs/0J40/4) for details.
 
-Once you have configured your animations and wired up the controller, it's
-pretty simple to integrate them into the sketch.
+My hardware configuration is as follows. Unless specified otherwise, I'm using MG996R servos from Amazon.
 
-In padawan360_body\padawan360_body_mega_i2c_ino\padawan360_body_mega_i2c\padawan360_body_mega_i2c.ino, search for "GENERAL SOUND PLAYBACK AND DISPLAY CHANGING". That's where the button mappings begin.
 
-For whichever button combos you want to use, add:
-      maestro.restartScript(x);
+| Maestro Servo Channel            | Function            |
+| -------------------------------- | ------------------- |
+| 0                                | Top utility Arm     |
+| 1                                | Lower utility Arm   |
+| 2                                | Right door?         |
+| 3                                | Data panel?         |
+| 4                                | Left door           |
+| 5                                | Gripper arm         |
+| 6 (micro servo)                  | Gripper claw        |
+| 7                                | Interface arm       |
+| 8 (micro servo)                  | Interface telescope |
 
-Where x is the script number you want to run. You can find the script numbers in the Polulu Control Center.
+And my animation configuration is:
 
-Since the actual servo movement is executed directly by the Maestro, the Arduino sketch will continue processing without delay. 
+| Sequence / Script number  | Function                | Servos / Actions      |
+| ------------------------- | ----------------------- | --------------------- |
+| 0                         | Data panel door close    | Servo 3 closes door    |      
+| 1                         | Data panel door open   | Servo 3 opens door   |
+| 2                         | Left door close        | Servo 5 lowers gripper arm</br>Servo 4 closes door |
+| 3                         | Left door open         | Servo 4 opens door</br>Servo 5 raises gripper arm |
+| 4                         | PANIC!                 | TBD |
+| 5                         | Right door close       | Servo 7 lowers interface arm</br>Servo 2 closes door|
+| 6                         | Right door open        | Servo 2 opens door</br>Servo 7 raises arm|
+| 7                         | Utility arm flap       | Servos 0 and 1 open utility arms, then close them again |
+
+My mapping of buttons / functions is in the controls section below. I have taken over certain functionality from the stock Padawan360 config, as well as adding R2 into the controller mix.
+
+Once you have configured your animations and wired up the controller, it's pretty simple to integrate them into the sketch. You can either try to copy me as-is, or use what I have done as a guide.
 
 ### Arduino UNO/MEGA
 
@@ -321,17 +346,45 @@ Builder Steve Baudains has put together a few videos walking through setup of th
 
 ### Button Guide
 
-Press guide button to turn on the controller.
+Brian - I have rearranged the buttons / don't use some of the built in functionality. No fancy graphic, just a table.
+
+
+| Button / Combo | What it does            | Notes |
+| -------------- | ------------            | ----- |
+| Center X       | Turns on the controller | The ring will flash in circles when it's on auto, one light will be on when foot motors are engaged.|
+| Start          | Toggle foot motors      | Engages / disengages feet |
+| Back           | Toggle auto mode        | In auto the feet are off, the head will move randomly and random sounds will play |
+| Left stick     | Left/right to move head | |
+| Right stick    | Moves the feet          | |
+| Left bumper + up/down | Volume control.  | |
+| Y              | Chortle sound | |
+| A              | Scream sound | |
+| X              | Short circuit | |
+| B              | Doo Doo sound | |
+| L1 + Y         | Mad about you |The L1 combos are all Galaxy's Edge soundtrack music |
+| L1 + A         | Modal Notes |The L1 combos are all Galaxy's Edge soundtrack music |
+| L1 + X         | Utinni |The L1 combos are all Galaxy's Edge soundtrack music |
+| L1 + B         | Bright Suns |The L1 combos are all Galaxy's Edge soundtrack music |
+| R1 + Y         | Random Alarm | |
+| R1 + A         | Random Misc | |
+| R1 + X         | Random Oooh | |
+| R1 + B         | Random Sentry | | 
+| L2 + Y         | Random Alarm sound + gripper arm up| |
+| L2 + A         | Random Misc + gripper arm down| |
+| L2 + X         | Wolf Whistle + utility arm flap| |
+| L2 + B         | Short Circuit + panic mode| |
+| R2 + Y         | Random Alarm + interface arm up | |
+| R2 + A         | Random Misc + interface arm down| |
+| R2 + X         | Random Ooh + data panel open | |
+| R2 + B         | Random Sent + data panel close| |
+
+
 
 Press Start button to engage motors!
 
-Drive stick is now (as of 2019-11-01) on the LEFT STICK and dome control is on the RIGHT STICK.
-They have been reversed from what is seen in the below controller guide.
-Set `isLeftStickDrive` in the code to false to drive with the RIGHT STICK as seen in the guide.
 
-![Button Guide](https://github.com/dankraus/padawan360/blob/master/xbox360-controller-guide.jpg)
 
-(Button layout image courtesy of LarryJ on Astromech. Thanks!)
+
 
 ## Troubleshooting and FAQs
 
