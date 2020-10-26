@@ -1,3 +1,4 @@
+
 // =======================================================================================
 // /////////////////////////Padawan360 Body Code - Mega I2C v2.0 ////////////////////////////////////
 // =======================================================================================
@@ -57,12 +58,12 @@ Placed a 10K ohm resistor between S1 & GND on the SyRen 10 itself
 
 // SPEED AND TURN SPEEDS
 //set these 3 to whatever speeds work for you. 0-stop, 127-full speed.
-const byte DRIVESPEED1 = 50;
+const byte DRIVESPEED1 = 40;
 // Recommend beginner: 50 to 75, experienced: 100 to 127, I like 100. 
 // These may vary based on your drive system and power system
-const byte DRIVESPEED2 = 100;
+const byte DRIVESPEED2 = 50;
 //Set to 0 if you only want 2 speeds.
-const byte DRIVESPEED3 = 127;
+const byte DRIVESPEED3 = 75;
 
 // Default drive speed at startup
 byte drivespeed = DRIVESPEED1;
@@ -509,7 +510,7 @@ void loop() {
     } else if (Xbox.getButtonPress(L2, 0)) {
       // Flirty droid -- Utility arm flap + wolf whistle
       mp3Trigger.play(4);
-      maestro.restartScript(0);
+      maestro.restartScript(7);
       //logic lights
       //triggerI2C(10, 4);
     } else if (Xbox.getButtonPress(R1, 0)) {
