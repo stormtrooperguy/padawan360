@@ -357,27 +357,26 @@ Brian - I have rearranged the buttons / don't use some of the built in functiona
 | Left stick     | Left/right to move head | |
 | Right stick    | Moves the feet          | |
 | Left bumper + up/down | Volume control.  | |
-| Y              | Chortle sound | |
-| A              | Scream sound | |
-| X              | Short circuit | |
-| B              | Doo Doo sound | |
+| Y         | Random Alarm | |
+| A         | Random Misc | |
+| X         | Random Oooh | |
+| B         | Random Sentry | | 
 | L1 + Y         | Mad about you |The L1 combos are all Galaxy's Edge soundtrack music |
 | L1 + A         | Modal Notes |The L1 combos are all Galaxy's Edge soundtrack music |
 | L1 + X         | Utinni |The L1 combos are all Galaxy's Edge soundtrack music |
 | L1 + B         | Bright Suns |The L1 combos are all Galaxy's Edge soundtrack music |
-| R1 + Y         | Random Alarm | |
-| R1 + A         | Random Misc | |
-| R1 + X         | Random Oooh | |
-| R1 + B         | Random Sentry | | 
 | L2 + Y         | Random Alarm sound + gripper arm up| |
 | L2 + A         | Random Misc + gripper arm down| |
 | L2 + X         | Wolf Whistle + utility arm flap| |
 | L2 + B         | Short Circuit + panic mode| |
+| R1 + Y              | Chortle sound | |
+| R1 + A              | Scream sound | |
+| R1 + X              | Short circuit | |
+| R1 + B              | Doo Doo sound | |
 | R2 + Y         | Random Alarm + interface arm up | |
 | R2 + A         | Random Misc + interface arm down| |
 | R2 + X         | Random Ooh + data panel open | |
 | R2 + B         | Random Sent + data panel close| |
-
 
 
 Press Start button to engage motors!

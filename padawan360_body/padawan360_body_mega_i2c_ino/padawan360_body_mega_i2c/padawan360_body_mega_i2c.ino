@@ -414,7 +414,8 @@ void loop() {
       //logic lights, random
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(random(13, 17));
+      // chortle
+      mp3Trigger.play(2);
       //logic lights, random
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R2, 0)) {
@@ -422,8 +423,7 @@ void loop() {
       maestro.restartScript(6); 
       mp3Trigger.play(random(13, 17));
     } else {
-      // chortle
-      mp3Trigger.play(2);
+      mp3Trigger.play(random(13, 17));
       //logic lights, random
       //triggerI2C(10, 0);
     }
@@ -451,7 +451,8 @@ void loop() {
       //triggerI2C(26, 3);
       //triggerI2C(27, 3);
     } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(random(17, 25));
+      // scream
+      mp3Trigger.play(1);
       //logic lights, alarm2Display
       //triggerI2C(10, 11);
     } else if (Xbox.getButtonPress(R2, 0)) {
@@ -459,8 +460,7 @@ void loop() {
       maestro.restartScript(5);
       mp3Trigger.play(random(17, 25));      
     } else {
-      // scream
-      mp3Trigger.play(1);
+      mp3Trigger.play(random(17, 25));
       //logic lights, random
       //triggerI2C(10, 0);
     }
@@ -480,7 +480,7 @@ void loop() {
       //logic lights, random
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(random(32, 52));
+      mp3Trigger.play(3);
       //logic lights bargrap
       //triggerI2C(10, 10);
       // HPEvent 1 - Disco - I2C
@@ -492,7 +492,7 @@ void loop() {
       maestro.restartScript(0);
       mp3Trigger.play(random(32, 52));
     } else {
-      mp3Trigger.play(3);
+      mp3Trigger.play(random(32, 52));
       //logic lights, random
       //triggerI2C(10, 0);
     }
@@ -514,7 +514,7 @@ void loop() {
       //logic lights
       //triggerI2C(10, 4);
     } else if (Xbox.getButtonPress(R1, 0)) {
-      mp3Trigger.play(random(25, 32));
+      mp3Trigger.play(6);
       //logic lights, random
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R2, 0)) {
@@ -522,7 +522,7 @@ void loop() {
       maestro.restartScript(0);
       mp3Trigger.play(random(25, 32));
     } else {
-      mp3Trigger.play(6);
+      mp3Trigger.play(random(25, 32));
       //logic lights, random
       //triggerI2C(10, 0);
     }
