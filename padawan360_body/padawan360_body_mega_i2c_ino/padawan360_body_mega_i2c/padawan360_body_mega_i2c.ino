@@ -519,7 +519,7 @@ void loop() {
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R2, 0)) {
       // Data panel open
-      maestro.restartScript(0);
+      maestro.restartScript(1);
       mp3Trigger.play(random(25, 32));
     } else {
       mp3Trigger.play(random(25, 32));
