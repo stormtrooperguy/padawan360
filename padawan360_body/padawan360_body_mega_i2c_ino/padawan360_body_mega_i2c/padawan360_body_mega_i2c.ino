@@ -58,7 +58,7 @@ Placed a 10K ohm resistor between S1 & GND on the SyRen 10 itself
 
 // SPEED AND TURN SPEEDS
 //set these 3 to whatever speeds work for you. 0-stop, 127-full speed.
-const byte DRIVESPEED1 = 40;
+const byte DRIVESPEED1 = 50;
 // Recommend beginner: 50 to 75, experienced: 100 to 127, I like 100. 
 // These may vary based on your drive system and power system
 const byte DRIVESPEED2 = 50;
@@ -84,7 +84,7 @@ const byte DOMESPEED = 127;
 
 // Ramping- the lower this number the longer R2 will take to speedup or slow down,
 // change this by incriments of 1
-const byte RAMPING = 5;
+const byte RAMPING = 6;
 
 // Compensation is for deadband/deadzone checking. There's a little play in the neutral zone
 // which gets a reading of a value of something other than 0 when you're not moving the stick.
