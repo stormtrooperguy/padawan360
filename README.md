@@ -277,18 +277,19 @@ My hardware configuration is as follows. Unless specified otherwise, I'm using M
 | 7                                | Interface arm       |
 | 8 (micro servo)                  | Interface telescope |
 
-And my animation configuration is:
+And my animation configuration is shown below. One VERY important note is that the Maestro will sort your sequences by name when you write the config. If you don't use leading numbers like I show in the example, you can suddenly have all of your animations shifted around. Guess how I learned that (see commit history!)
 
 | Sequence / Script number  | Function                | Servos / Actions      |
 | ------------------------- | ----------------------- | --------------------- |
-| 0                         | Data panel door close    | Servo 3 closes door    |      
-| 1                         | Data panel door open   | Servo 3 opens door   |
-| 2                         | Left door close        | Servo 5 lowers gripper arm</br>Servo 4 closes door |
-| 3                         | Left door open         | Servo 4 opens door</br>Servo 5 raises gripper arm |
-| 4                         | PANIC!                 | TBD |
-| 5                         | Right door close       | Servo 7 lowers interface arm</br>Servo 2 closes door|
-| 6                         | Right door open        | Servo 2 opens door</br>Servo 7 raises arm|
-| 7                         | Utility arm flap       | Servos 0 and 1 open utility arms, then close them again |
+| 0                         | 00DATAPANELCLOSE        | Servo 3 closes door    |      
+| 1                         | 01DATAPANELOPEN         | Servo 3 opens door   |
+| 2                         | 02GRIPPERCLAW           | Operate gripper claw
+| 3                         | 03GRIPPERARMUP          | Servo 5 lowers gripper arm</br>Servo 4 closes door |
+| 4                         | 04GRIPPERARMDOWN         | Servo 4 opens door</br>Servo 5 raises gripper arm |
+| 5                         | 05SHORTCRKT                | All doors open/close repeatedly |
+| 6                         | 06INTERFACEARMDOWN       | Servo 8 retracts interface arm</br> Servo 7 lowers interface arm</br>Servo 2 closes door|
+| 7                         | 07INTERFACEARMUO        | Servo 2 opens door</br>Servo 7 raises arm</br>Servo 8 extends arm|
+| 8                         | 08UTILITYARMFLAP       | Servos 0 and 1 open utility arms, then close them again |
 
 My mapping of buttons / functions is in the controls section below. I have taken over certain functionality from the stock Padawan360 config, as well as adding R2 into the controller mix.
 
@@ -367,8 +368,8 @@ Brian - I have rearranged the buttons / don't use some of the built in functiona
 | L1 + B         | Bright Suns |The L1 combos are all Galaxy's Edge soundtrack music |
 | L2 + Y         | Random Alarm sound + gripper arm up| |
 | L2 + A         | Random Misc + gripper arm down| |
-| L2 + X         | Wolf Whistle + utility arm flap| |
-| L2 + B         | Short Circuit + panic mode| |
+| L2 + X         | Short Circuit + panic mode | |
+| L2 + B         | No sound + operate claw| |
 | R1 + Y              | Chortle sound | |
 | R1 + A              | Scream sound | |
 | R1 + X              | Short circuit | |
@@ -377,12 +378,6 @@ Brian - I have rearranged the buttons / don't use some of the built in functiona
 | R2 + A         | Random Misc + interface arm down| |
 | R2 + X         | Random Ooh + data panel open | |
 | R2 + B         | Random Sent + data panel close| |
-
-
-Press Start button to engage motors!
-
-
-
 
 
 ## Troubleshooting and FAQs
@@ -446,9 +441,6 @@ _**The right analog stick is centered but it still drives(turns, drives forward,
 
 You need to just adjust the deadzone `const byte DRIVEDEADZONERANGE = 20;` Increase this number until you can let the stick go neutral and nothing moves. The sketch has some more info on that above setting that value to adjust for controller stick drift.
 
-## Coming Soon
-
-Dome servos via I2C support.
 
 ## Licensing
 

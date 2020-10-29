@@ -409,7 +409,7 @@ void loop() {
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(L2, 0)) {
       // Left door open; gripper arm up; grabby hand
-      maestro.restartScript(3);
+      maestro.restartScript(4);
       mp3Trigger.play(random(13, 17));
       //logic lights, random
       //triggerI2C(10, 0);
@@ -420,7 +420,7 @@ void loop() {
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R2, 0)) {
       // right door open; interface arm up, telescope out
-      maestro.restartScript(6); 
+      maestro.restartScript(7); 
       mp3Trigger.play(random(13, 17));
     } else {
       mp3Trigger.play(random(13, 17));
@@ -442,7 +442,7 @@ void loop() {
       //triggerI2C(27, 11);
     } else if (Xbox.getButtonPress(L2, 0)) {
       // Gripper arm down; Left door close
-      maestro.restartScript(2);
+      maestro.restartScript(3);
       mp3Trigger.play(random(17, 25));
       //logic lights, alarm
       //triggerI2C(10, 1);
@@ -457,7 +457,7 @@ void loop() {
       //triggerI2C(10, 11);
     } else if (Xbox.getButtonPress(R2, 0)) {
       // Interface arm down, right door close
-      maestro.restartScript(5);
+      maestro.restartScript(6);
       mp3Trigger.play(random(17, 25));      
     } else {
       mp3Trigger.play(random(17, 25));
@@ -474,9 +474,9 @@ void loop() {
       //logic lights, random
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(L2, 0)) {
-      // panic still in development
-      //maestro.restartScript(4);
-      mp3Trigger.play(6);
+      // Claw
+      //mp3Trigger.play(4);
+      maestro.restartScript(2);
       //logic lights, random
       //triggerI2C(10, 0);
     } else if (Xbox.getButtonPress(R1, 0)) {
@@ -508,9 +508,10 @@ void loop() {
       // Front HPEvent 1 - HoloMessage - I2C -leia message
       //triggerI2C(25, 9);
     } else if (Xbox.getButtonPress(L2, 0)) {
-      // Flirty droid -- Utility arm flap + wolf whistle
-      mp3Trigger.play(4);
-      maestro.restartScript(7);
+
+      // panic still in development
+      maestro.restartScript(5);
+      mp3Trigger.play(6);
       //logic lights
       //triggerI2C(10, 4);
     } else if (Xbox.getButtonPress(R1, 0)) {
